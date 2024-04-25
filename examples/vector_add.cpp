@@ -10,7 +10,7 @@ const int size = 1024 * 16;
 void gpu_computation() {
     auto instance = easyvk::Instance(true);
     auto physicalDevices = instance.physicalDevices();
-    auto device = easyvk::Device(instance, physicalDevices.at(0));
+    auto device = easyvk::Device(instance, physicalDevices.at(1));
     std::cout << "Using device: " << device.properties.deviceName << " for GPU computation\n";
 
     auto a = easyvk::Buffer(device, size, sizeof(float));
