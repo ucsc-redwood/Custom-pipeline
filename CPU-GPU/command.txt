@@ -1,2 +1,5 @@
 nvcc -o cifar_app cuda_main.cu cifar_cuda.cu -I. -lcudart
 ./cifar_app images/flattened_automobile_automobile_1.txt 256
+
+Duck Stable:
+/usr/local/cuda/bin/nvcc -o cifar_app cuda_main.cu cifar_cuda.cu -I. -lcudart
