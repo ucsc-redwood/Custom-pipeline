@@ -344,7 +344,7 @@ static void BM_processImageFile(benchmark::State &state)
     {
         // auto start = std::chrono::high_resolution_clock::now();
         for (const std::string &filename : fileNames)
-   git      {
+        {
             pool.enqueue([filename](const std::string &fname)
                          {
 	    processImageFile(fname);
