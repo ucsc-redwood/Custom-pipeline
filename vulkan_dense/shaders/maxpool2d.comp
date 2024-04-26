@@ -1,0 +1,53 @@
+#version 450
+#extension GL_KHR_shader_subgroup_basic:enable
+#extension GL_KHR_shader_subgroup_ballot:enable
+#extension GL_KHR_shader_subgroup_arithmetic:enable
+#extension GL_KHR_shader_subgroup_vote:enable
+
+#define FLT_MAX 3.402823466e+38
+
+layout(local_size_x = 16, local_size_y = 16, local_size_z = 1) in;
+
+layout(push_constant) uniform PushConstants {
+    int input_channels;
+    int input_height;
+    int input_width;
+    int pool_size;
+    int stride;
+};
+
+layout(set = 0, binding = 0) buffer InputBuffer {
+    float input_data[];
+};
+
+layout(set = 0, binding = 1) buffer OutputBuffer {
+    float output_data[];
+};
+
+void k_maxpool2d(){
+    int output_height = int((input_height - pool_size) / stride + 1);
+    int output_width = int((input_width - pool_size) / stride + 1);
+    int c = int(gl_WorkGroupID.x);
+    int h = int(gl_LocalInvocationID.y + gl_WorkGroupID.y * gl_WorkGroupSize.y);
+    int w = int(gl_LocalInvocationID.x + gl_WorkGroupID.x * gl_WorkGroupSize.x);
+
+    if (h < output_height && w < output_width) {
+        float max_val = -FLT_MAX;
+        for (int ph = 0; ph < pool_size; ph++) {
+            for (int pw = 0; pw < pool_size; pw++) {
+                int input_h = h * stride + ph;
+                int input_w = w * stride + pw;
+                if (input_h < input_height && input_w < input_width) {
+                    int input_index = c * (input_height * input_width) + input_h * input_width + input_w;
+                    max_val = max(max_val, input_data[input_index]);
+                }
+            }
+        }
+        int output_index = c * (output_height * output_width) + h * output_width + w;
+        output_data[output_index] = max_val;
+    }
+}
+
+void main() {
+    k_maxpool2d();
+}

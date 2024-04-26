@@ -1,0 +1,72 @@
+#version 450
+#extension GL_KHR_shader_subgroup_basic:enable
+#extension GL_KHR_shader_subgroup_ballot:enable
+#extension GL_KHR_shader_subgroup_arithmetic:enable
+#extension GL_KHR_shader_subgroup_vote:enable
+
+layout(local_size_x = 16, local_size_y = 16, local_size_z = 1) in;
+
+layout(push_constant) uniform Params {
+    int weight_input_channels;
+	int weight_height;
+    int weight_width;
+    int input_height;
+    int input_width;
+	int bias_number_of_elements;
+    int kernel_size;
+    int stride;
+    int padding;
+	bool relu;
+};
+
+layout(set = 0, binding = 0) buffer InputData {
+    float input_data[];
+};
+
+layout(set = 0, binding = 1) buffer WeightData {
+    float weight_data[];
+};
+
+layout(set = 0, binding = 2) buffer BiasData {
+    float bias_data[];
+};
+
+layout(set = 0, binding = 3) buffer OutputData {
+    float output_data[];
+};
+
+void k_conv2d(){
+    int output_height = int((input_height + 2 * padding - kernel_size) / stride + 1);
+    int output_width = int((input_width + 2 * padding - kernel_size) / stride + 1);
+    int out_channel = int(gl_WorkGroupID.x);
+    int y = int(gl_LocalInvocationID.y + gl_WorkGroupID.y * gl_WorkGroupSize.y);
+    int x = int(gl_LocalInvocationID.x + gl_WorkGroupID.x * gl_WorkGroupSize.x);
+
+    if (y < output_height && x < output_width) {
+        float sum = 0.0f;
+        for (int in_channel = 0; in_channel < weight_input_channels; ++in_channel) {
+            for (int ky = 0; ky < weight_height; ++ky) {
+                int image_y_base = y * stride + ky - padding;
+                for (int kx = 0; kx < weight_width; ++kx) {
+                    int image_x = x * stride + kx - padding;
+                    if (image_y_base >= 0 && image_y_base < input_height && image_x >= 0 && image_x < input_width) {
+                        int input_index = ((in_channel * input_height + image_y_base) * input_width + image_x);
+                        int weight_index = ((((out_channel * weight_input_channels) + in_channel) * weight_height + ky) * weight_width + kx);
+                        sum += input_data[input_index] * weight_data[weight_index];
+                    }
+                }
+            }
+        }
+        if (/*bias_data &&*/ out_channel < bias_number_of_elements) {
+            sum += bias_data[out_channel];
+        }
+        if (relu && sum < 0) {
+            sum = 0.0f;
+        }
+        output_data[(out_channel * output_height + y) * output_width + x] = sum;
+    }
+}
+
+void main(){
+    k_conv2d();
+}
