@@ -10,59 +10,59 @@
 using namespace std;
 
 class Pipe : public ApplicationBase {
-public:
-    Pipe(AppParams param) : ApplicationBase() {
-        params_ = param;
-    }
-    void run();
+ public:
+  Pipe(AppParams param) : ApplicationBase() {
+    params_ = param;
+  }
+  void run();
 
-    void result();
+  void result();
 
-    void allocate(std::string file_path);
-    ~Pipe();
+  void allocate(std::string file_path);
+  ~Pipe();
 
-protected:
-    AppParams params_;
+  protected:
+  AppParams params_;
 
-    // Essential data memory
-    float* image_data;
-    float* weight_data;
-    float* bias_data;
+  // Essential data memory
+  float* image_data;
+  float* weight_data;
+  float* bias_data;
+  
+  float* second_weight_data;
+  float* second_bias_data;
+
+  float* third_weight_data;
+  float* third_bias_data;
+
+  float* fourth_weight_data;
+  float* fourth_bias_data;
+
+  float* fifth_weight_data;
+  float* fifth_bias_data;
+
+  float* linear_weight_data;
+  float* linear_bias_data;
+
+  float* conv_output_data;
+  float* maxpool_output_data;
+
+  float* second_conv_output_data;
+  float* second_maxpool_output_data;
+
+  float* third_conv_output_data;
     
-    float* second_weight_data;
-    float* second_bias_data;
+  float* fourth_conv_output_data;
 
-    float* third_weight_data;
-    float* third_bias_data;
+  float* fifth_conv_output_data;
+  float* fifth_maxpool_output_data;
 
-    float* fourth_weight_data;
-    float* fourth_bias_data;
-
-    float* fifth_weight_data;
-    float* fifth_bias_data;
-
-    float* linear_weight_data;
-    float* linear_bias_data;
-
-    float* conv_output_data;
-    float* maxpool_output_data;
-
-    float* second_conv_output_data;
-    float* second_maxpool_output_data;
-
-    float* third_conv_output_data;
-        
-    float* fourth_conv_output_data;
-
-    float* fifth_conv_output_data;
-    float* fifth_maxpool_output_data;
-
-    float* flattened_output;
-    float* linear_output_data;
+  float* flattened_output;
+  float* linear_output_data;
 
 
 
-    VkBuffer image_data_buffer;
+  VkBuffer image_data_buffer;
     VkBuffer weight_data_buffer;
     VkBuffer bias_data_buffer;
 
@@ -97,7 +97,7 @@ protected:
     VkBuffer flattened_output_buffer;
     VkBuffer linear_output_data_buffer;
 
-    VkDeviceMemory image_data_memory;
+  VkDeviceMemory image_data_memory;
     VkDeviceMemory weight_data_memory;
     VkDeviceMemory bias_data_memory;
 
@@ -308,24 +308,9 @@ void Pipe::result() {
     std::cout << std::endl;
 }
 
-void Pipe::run() {
+void Pipe::run(){
     int conv_output_height = (params_.input_height + 2 * params_.padding - params_.kernel_size) / params_.stride + 1;
     int conv_output_width = (params_.input_width + 2 * params_.padding - params_.kernel_size) / params_.stride + 1;
-    int pooled_output_height = (conv_output_height - params_.pool_size) / params_.pool_stride + 1;
-    int pooled_output_width = (conv_output_width - params_.pool_size) / params_.pool_stride + 1;
-    int second_conv_output_height = pooled_output_height;
-    int second_conv_output_width = pooled_output_width;
-    int second_pooled_output_height = (second_conv_output_height - params_.pool_size) / params_.pool_stride + 1;
-    int second_pooled_output_width = (second_conv_output_width - params_.pool_size) / params_.pool_stride + 1;
-    int third_conv_output_height = second_pooled_output_height;
-    int third_conv_output_width = second_pooled_output_width;
-    int fourth_conv_output_height = third_conv_output_height;
-    int fourth_conv_output_width = third_conv_output_width;
-    int fifth_conv_output_height = fourth_conv_output_height;
-    int fifth_conv_output_width = fourth_conv_output_width;
-    int fifth_pooled_output_height = (fifth_conv_output_height - 2) / 2 + 1;
-    int fifth_pooled_output_width = (fifth_conv_output_width - 2) / 2 + 1;
-    int fifth_conv_output_channels = 256;
 
     // --- Convolution 1 ---
     Conv2d conv1 = Conv2d();
@@ -346,7 +331,7 @@ void Pipe::run() {
     
     // --- output 2 ---
     std::cout << "Maxpool1 Output:" << std::endl;
-    for (int i = 0; i < params_.weight_output_channels * pooled_output_height * pooled_output_width; ++i) {
+    for (int i = 0; i < params_.weight_output_channels * conv_output_height * conv_output_width; ++i) {
         std::cout << maxpool_output_data[i] << " ";
     }
     std::cout << std::endl;
@@ -415,6 +400,8 @@ void Pipe::run() {
     }
     std::cout << std::endl;
 
+    int fifth_conv_output_height = (params_.input_height + 2 * params_.padding - params_.kernel_size) / params_.stride + 1;
+    int fifth_conv_output_width = (params_.input_width + 2 * params_.padding - params_.kernel_size) / params_.stride + 1;    
     // --- Fifth Convolution ---
     Conv2d conv5 = Conv2d();
     AppParams fifth_conv_params = params_;
@@ -432,6 +419,9 @@ void Pipe::run() {
     }
     std::cout << std::endl;
 
+    int fifth_conv_output_channels = 256;
+    int fifth_pooled_output_height = (fifth_conv_output_height - 2) / 2 + 1;
+    int fifth_pooled_output_width = (fifth_conv_output_width - 2) / 2 + 1;
     // --- Maxpool after Fifth Convolution ---
     Maxpool2d maxpool3 = Maxpool2d();
     maxpool3.compute_constant(256, fifth_conv_output_height, fifth_conv_output_width, 2, 2);
@@ -475,7 +465,7 @@ void Pipe::run() {
 }
 
 Pipe::~Pipe() {
-    // --- Essentials ---
+  // --- Essentials ---
     vkUnmapMemory(singleton.device, image_data_memory);
     vkDestroyBuffer(singleton.device, image_data_buffer, nullptr);
     vkFreeMemory(singleton.device, image_data_memory, nullptr);

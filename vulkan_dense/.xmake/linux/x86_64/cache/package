@@ -1,0 +1,97 @@
+{
+    glm = {
+        version = "1.0.1",
+        envs = {
+            LD_LIBRARY_PATH = {
+                "/home/riksharm/.xmake/packages/g/glm/1.0.1/098b42d4eeff4f23b1f5e66b16572043/lib"
+            }
+        },
+        __enabled = true,
+        installdir = "/home/riksharm/.xmake/packages/g/glm/1.0.1/098b42d4eeff4f23b1f5e66b16572043",
+        __requirestr = "glm",
+        sysincludedirs = "/home/riksharm/.xmake/packages/g/glm/1.0.1/098b42d4eeff4f23b1f5e66b16572043/include",
+        license = "MIT"
+    },
+    spdlog = {
+        version = "v1.13.0",
+        envs = {
+            LD_LIBRARY_PATH = {
+                "/home/riksharm/.xmake/packages/s/spdlog/v1.13.0/cca5b628022e49229205fe5617e4245e/lib"
+            }
+        },
+        syslinks = "pthread",
+        __enabled = true,
+        installdir = "/home/riksharm/.xmake/packages/s/spdlog/v1.13.0/cca5b628022e49229205fe5617e4245e",
+        __requirestr = "spdlog",
+        sysincludedirs = "/home/riksharm/.xmake/packages/s/spdlog/v1.13.0/cca5b628022e49229205fe5617e4245e/include",
+        license = "MIT"
+    },
+    ["spirv-cross"] = {
+        static = true,
+        envs = {
+            LD_LIBRARY_PATH = {
+                "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib",
+                "/home/riksharm/.xmake/packages/c/cmake/3.28.3/fae3628018234a9d8cdb1c774e2032d7/lib"
+            },
+            PATH = {
+                "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/bin",
+                "/home/riksharm/.xmake/packages/c/cmake/3.28.3/fae3628018234a9d8cdb1c774e2032d7/bin"
+            }
+        },
+        __enabled = true,
+        installdir = "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf",
+        version = "1.3.268+0",
+        libfiles = {
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-c.a",
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-cpp.a",
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-reflect.a",
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-msl.a",
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-util.a",
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-hlsl.a",
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-glsl.a",
+            "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib/libspirv-cross-core.a"
+        },
+        links = {
+            "spirv-cross-c",
+            "spirv-cross-cpp",
+            "spirv-cross-reflect",
+            "spirv-cross-msl",
+            "spirv-cross-util",
+            "spirv-cross-hlsl",
+            "spirv-cross-glsl",
+            "spirv-cross-core"
+        },
+        license = "Apache-2.0",
+        __requirestr = "spirv-cross",
+        sysincludedirs = "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/include",
+        linkdirs = "/home/riksharm/.xmake/packages/s/spirv-cross/1.3.268+0/d1511b27c10642198250cec612800bdf/lib"
+    },
+    vulkansdk = {
+        links = "vulkan",
+        __enabled = true,
+        __requireconfs = {
+            system = true
+        },
+        __requirestr = "vulkansdk",
+        apiversion = "1.3.280",
+        envs = {
+            LD_LIBRARY_PATH = {
+                "/home/riksharm/.xmake/packages/v/vulkansdk/latest/a9029519e985482b80fd0c2b93833a31/lib"
+            },
+            PATH = { }
+        }
+    },
+    cli11 = {
+        version = "v2.4.1",
+        envs = {
+            LD_LIBRARY_PATH = {
+                "/home/riksharm/.xmake/packages/c/cli11/v2.4.1/9bb9e342af314b5a8eb896f12be78a27/lib"
+            }
+        },
+        __enabled = true,
+        installdir = "/home/riksharm/.xmake/packages/c/cli11/v2.4.1/9bb9e342af314b5a8eb896f12be78a27",
+        __requirestr = "cli11",
+        sysincludedirs = "/home/riksharm/.xmake/packages/c/cli11/v2.4.1/9bb9e342af314b5a8eb896f12be78a27/include",
+        license = "BSD"
+    }
+}
