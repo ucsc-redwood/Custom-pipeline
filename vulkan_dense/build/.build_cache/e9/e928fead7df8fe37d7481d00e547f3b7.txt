@@ -1,0 +1,67 @@
+{
+    errdata = "In file included from \27[01m\27[Kinclude/application.hpp:2\27[m\27[K,\
+                 from \27[01m\27[Kinclude/naive_pipeline.hpp:3\27[m\27[K,\
+                 from \27[01m\27[Ksrc/main.cpp:1\27[m\27[K:\
+\27[01m\27[Kinclude/singleton.hpp:\27[m\27[K In member function ‘\27[01m\27[KVkResult Singleton::createBuffer(VkBufferUsageFlags, VkMemoryPropertyFlags, VkBuffer_T**, VkDeviceMemory_T**, VkDeviceSize, void*)\27[m\27[K’:\
+\27[01m\27[Kinclude/singleton.hpp:203:22:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kvariable ‘\27[01m\27[KmemTypeFound\27[m\27[K’ set but not used [\27[01;35m\27[K-Wunused-but-set-variable\27[m\27[K]\
+  203 |                 bool \27[01;35m\27[KmemTypeFound\27[m\27[K = false;\
+      |                      \27[01;35m\27[K^~~~~~~~~~~~\27[m\27[K\
+In file included from \27[01m\27[Kinclude/naive_pipeline.hpp:4\27[m\27[K,\
+                 from \27[01m\27[Ksrc/main.cpp:1\27[m\27[K:\
+\27[01m\27[Kinclude/conv2d.hpp:\27[m\27[K In member function ‘\27[01m\27[Kvoid Conv2d::run(int, int, float*, float*, float*, float*, int, VkBuffer, VkBuffer, VkBuffer, VkBuffer, int)\27[m\27[K’:\
+\27[01m\27[Kinclude/conv2d.hpp:79:28:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Klogical_block\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   79 | void Conv2d::run(\27[01;35m\27[Kconst int logical_block\27[m\27[K,\
+      |                  \27[01;35m\27[K~~~~~~~~~~^~~~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/conv2d.hpp:81:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kinput_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   81 |     \27[01;35m\27[Kfloat *input_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/conv2d.hpp:82:16:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kweighted_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   82 |         \27[01;35m\27[Kfloat *weighted_data\27[m\27[K,\
+      |         \27[01;35m\27[K~~~~~~~^~~~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/conv2d.hpp:83:16:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kbias_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   83 |         \27[01;35m\27[Kfloat *bias_data\27[m\27[K,\
+      |         \27[01;35m\27[K~~~~~~~^~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/conv2d.hpp:84:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Koutput_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   84 |     \27[01;35m\27[Kfloat *output_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/conv2d.hpp:90:19:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kn\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   90 |         \27[01;35m\27[Kconst int n\27[m\27[K){\
+      |         \27[01;35m\27[K~~~~~~~~~~^\27[m\27[K\
+In file included from \27[01m\27[Kinclude/naive_pipeline.hpp:5\27[m\27[K,\
+                 from \27[01m\27[Ksrc/main.cpp:1\27[m\27[K:\
+\27[01m\27[Kinclude/maxpool2d.hpp:\27[m\27[K In member function ‘\27[01m\27[Kvoid Maxpool2d::run(int, int, float*, float*, VkBuffer, VkBuffer, int)\27[m\27[K’:\
+\27[01m\27[Kinclude/maxpool2d.hpp:71:31:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Klogical_block\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   71 | void Maxpool2d::run(\27[01;35m\27[Kconst int logical_block\27[m\27[K,\
+      |                     \27[01;35m\27[K~~~~~~~~~~^~~~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/maxpool2d.hpp:73:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kinput_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   73 |     \27[01;35m\27[Kfloat *input_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/maxpool2d.hpp:74:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Koutput_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   74 |     \27[01;35m\27[Kfloat *output_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/maxpool2d.hpp:77:19:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kn\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   77 |         \27[01;35m\27[Kconst int n\27[m\27[K){\
+      |         \27[01;35m\27[K~~~~~~~~~~^\27[m\27[K\
+In file included from \27[01m\27[Kinclude/naive_pipeline.hpp:6\27[m\27[K,\
+                 from \27[01m\27[Ksrc/main.cpp:1\27[m\27[K:\
+\27[01m\27[Kinclude/linearLayer.hpp:\27[m\27[K In member function ‘\27[01m\27[Kvoid LinearLayer::run(int, int, float*, float*, float*, float*, VkBuffer, VkBuffer, VkBuffer, VkBuffer, int)\27[m\27[K’:\
+\27[01m\27[Kinclude/linearLayer.hpp:63:33:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Klogical_block\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   63 | void LinearLayer::run(\27[01;35m\27[Kconst int logical_block\27[m\27[K,\
+      |                       \27[01;35m\27[K~~~~~~~~~~^~~~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/linearLayer.hpp:65:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kinput_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   65 |     \27[01;35m\27[Kfloat *input_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/linearLayer.hpp:66:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kweighted_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   66 |     \27[01;35m\27[Kfloat *weighted_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/linearLayer.hpp:67:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kbias_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   67 |     \27[01;35m\27[Kfloat *bias_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/linearLayer.hpp:68:12:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Koutput_data\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   68 |     \27[01;35m\27[Kfloat *output_data\27[m\27[K,\
+      |     \27[01;35m\27[K~~~~~~~^~~~~~~~~~~\27[m\27[K\
+\27[01m\27[Kinclude/linearLayer.hpp:73:19:\27[m\27[K \27[01;35m\27[Kwarning: \27[m\27[Kunused parameter ‘\27[01m\27[Kn\27[m\27[K’ [\27[01;35m\27[K-Wunused-parameter\27[m\27[K]\
+   73 |         \27[01;35m\27[Kconst int n\27[m\27[K){\
+      |         \27[01;35m\27[K~~~~~~~~~~^\27[m\27[K\
+"
+}
